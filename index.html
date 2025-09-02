@@ -32,29 +32,43 @@ body {
 
 </head>
 
- <div id="logo-container">
+<div id="logo-container">
   <img
     id="logo"
-    style="padding-top: 45px; padding-bottom: 45px; transition: transform 0.1s ease-out;position: fixed;"
     src="https://raw.githubusercontent.com/dvncan90/bearhug/2874cbec1bb9cd4c8a35150881285a84206638ea/img/logo_bearhug.svg"
+    style="
+      width: 100vw;
+      max-width: 100vw;
+      transition: width 0.1s ease-out;
+      position: fixed;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 9999;
+    "
   >
 </div>
 
-<div   style="padding-top: 40005px; width: 100%" gfhfghfghf   >                                                                                                         
-                                                                                                                          
-                                                                                                                          
-                                                                                                                          
-                                                                                                                          
-                                                                                                                          
+<!-- Filler for scrolling -->
+<div style="padding-top: 4000px;"></div>
+
 <script>
   window.addEventListener('scroll', () => {
-    const scrollY = window.scrollY;
-    const scaleFactor = 1 - scrollY / 1000; // Adjust 1000 to control scaling speed
     const logo = document.getElementById('logo');
-    logo.style.transform = `scale(${scaleFactor})`;
-                                         
+    const scrollY = window.scrollY;
+
+    // Width reduces from 100% (vw) to 180px minimum
+    const maxWidth = window.innerWidth; // 100% of screen width
+    const minWidth = 180; // px
+
+    // Adjust the divisor (1000) to control scroll sensitivity
+    let newWidth = maxWidth - scrollY;
+    newWidth = Math.max(minWidth, newWidth); // Clamp to 180px
+
+    logo.style.width = `${newWidth}px`;
   });
 </script>
+
                                                                                                                           
                                                                                                                           
                                                                                                                           
